@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tupul Homes - Home Improvements Across Long Island & NYC</title>
+    <meta name="description" content="From small installs to full renovations — one trusted crew. 20 years serving Nassau, Suffolk, Queens & Brooklyn.">
+    
+    <style>
+        /* ========================================
+           CSS VARIABLES & DESIGN TOKENS
+           ======================================== */
+        :root {
+            /* Color Palette - Warm Professional */
+            --color-bg-primary: #FAFAF8;
+            --color-bg-secondary: #F5F3EE;
+            --color-bg-dark: #2B2B2B;
+            --color-text-primary: #1A1A1A;
+            --color-text-secondary: #4A4A4A;
+            --color-text-light: #FFFFFF;
+            --color-accent-primary: #C4915B;
+            --color-accent-hover: #A67848;
+            --color-accent-light: #E8D5C0;
+            --color-border: #E0DDD8;
+            
+            /* Typography */
+            --font-display: 'Crimson Pro', serif;
+            --font-body: 'DM Sans', sans-serif;
+            
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            --space-3xl: 6rem;
+            
+            /* Layout */
+            --container-max: 1280px;
+            --container-narrow: 840px;
+            --header-height: 80px;
+            --mobile-cta-height: 70px;
+            
+            /* Effects */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-base: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+        
+        /* ========================================
+           GOOGLE FONTS IMPORT
+           ======================================== */
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+        
+        /* ========================================
+           RESET & BASE STYLES
+           ======================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            background-color: var(--color-bg-primary);
+            overflow-x: hidden;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color var(--transition-fast);
+        }
+        
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        
+        input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+        }
+        
+        /* ========================================
+           UTILITY CLASSES
+           ======================================== */
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+        
+        .container-narrow {
+            max-width: var(--container-narrow);
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+        
+        .section {
+            padding: var(--space-3xl) 0;
+        }
+        
+        .section-bg-alt {
+            background-color: var(--color-bg-secondary);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* ========================================
+           TYPOGRAPHY
+           ======================================== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            line-height: 1.2;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-md);
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: var(--space-lg);
+        }
+        
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+        }
+        
+        h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+        
+        p {
+            margin-bottom: var(--space-md);
+            color: var(--color-text-secondary);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-large {
+            font-size: 1.25rem;
+            line-height: 1.7;
+        }
+        
+        /* ========================================
+           BUTTONS
+           ======================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-base);
+            text-align: center;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-primary {
+            background-color: var(--color-accent-primary);
+            color: var(--color-text-light);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--color-accent-hover);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-text-primary);
+            border: 2px solid var(--color-accent-primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--color-accent-primary);
+            color: var(--color-text-light);
+            transform: translateY(-2px);
+        }
+        
+        .btn-large {
+            padding: 1.25rem 2.5rem;
+            font-size: 1.125rem;
+        }
+        
+        .btn-full {
+            width: 100%;
+        }
+        
+        /* ========================================
+           HEADER & NAVIGATION
+           ======================================== */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: rgba(250, 250, 248, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            height: var(--header-height);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+        }
+        
+        .site-header.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .header-container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .site-logo {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            letter-spacing: -0.01em;
+        }
+        
+        .site-logo span {
+            color: var(--color-accent-primary);
+        }
+        
+        .main-nav {
+            display: none;
+        }
+        
+        .main-nav.active {
+            display: flex;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            bottom: var(--mobile-cta-height);
+            background-color: var(--color-bg-primary);
+            flex-direction: column;
+            padding: var(--space-lg);
+            overflow-y: auto;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+        
+        .nav-link {
+            display: block;
+            padding: var(--space-md);
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--color-accent-primary);
+            background-color: var(--color-accent-light);
+        }
+        
+        .mobile-menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 30px;
+            height: 24px;
+            z-index: 1001;
+        }
+        
+        .mobile-menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--color-text-primary);
+            border-radius: 2px;
+            transition: all var(--transition-base);
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        /* ========================================
+           MOBILE CTA BAR
+           ======================================== */
+        .mobile-cta-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background-color: var(--color-bg-dark);
+            height: var(--mobile-cta-height);
+            display: flex;
+            box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mobile-cta-bar .btn {
+            flex: 1;
+            border-radius: 0;
+            height: 100%;
+            font-size: 1rem;
+        }
+        
+        .mobile-cta-bar .btn-primary {
+            background-color: var(--color-accent-primary);
+        }
+        
+        .mobile-cta-bar .btn-secondary {
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-light);
+            border: none;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            margin-top: var(--header-height);
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(43, 43, 43, 0.85) 0%, rgba(43, 43, 43, 0.7) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%234A4A4A" width="1200" height="800"/><g fill-opacity="0.3"><polygon fill="%23C4915B" points="1200 0 0 0 0 800"/><polygon fill="%23A67848" points="1200 800 1200 0 0 800"/></g></svg>');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(196, 145, 91, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: var(--space-3xl) 0;
+        }
+        
+        .hero h1 {
+            color: var(--color-text-light);
+            margin-bottom: var(--space-md);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: var(--color-accent-light);
+            margin-bottom: var(--space-xl);
+            font-weight: 400;
+        }
+        
+        .hero-cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            max-width: 400px;
+        }
+        
+        /* ========================================
+           SERVICE CARDS
+           ======================================== */
+        .service-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        .service-card {
+            background-color: white;
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border: 1px solid var(--color-border);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-accent-light);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-hover));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            font-size: 1.5rem;
+        }
+        
+        .service-card h3 {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .service-card p {
+            color: var(--color-text-secondary);
+            margin-bottom: 0;
+        }
+        
+        /* ========================================
+           WHY CHOOSE US
+           ======================================== */
+        .why-list {
+            list-style: none;
+            display: grid;
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+        }
+        
+        .why-item {
+            display: flex;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            background-color: white;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--color-accent-primary);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .why-item-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            color: var(--color-accent-primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .why-item-text {
+            font-size: 1.0625rem;
+            color: var(--color-text-primary);
+            font-weight: 500;
+        }
+        
+        /* ========================================
+           GALLERY GRID
+           ======================================== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            background: linear-gradient(135deg, #E8D5C0 0%, #C4915B 100%);
+            cursor: pointer;
+            transition: transform var(--transition-base);
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+            padding: var(--space-md);
+        }
+        
+        /* ========================================
+           FORMS
+           ======================================== */
+        .form-group {
+            margin-bottom: var(--space-md);
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: var(--space-xs);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            font-size: 0.9375rem;
+        }
+        
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: all var(--transition-fast);
+            background-color: white;
+        }
+        
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-accent-primary);
+            box-shadow: 0 0 0 3px rgba(196, 145, 91, 0.1);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-file {
+            display: block;
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px dashed var(--color-border);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            background-color: var(--color-bg-secondary);
+        }
+        
+        .form-file:hover {
+            border-color: var(--color-accent-primary);
+            background-color: var(--color-accent-light);
+        }
+        
+        .estimate-form {
+            background-color: white;
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* ========================================
+           SERVICE AREAS
+           ======================================== */
+        .service-areas {
+            background: linear-gradient(135deg, var(--color-bg-dark) 0%, #3A3A3A 100%);
+            color: var(--color-text-light);
+            text-align: center;
+            padding: var(--space-2xl) var(--space-md);
+        }
+        
+        .service-areas h2 {
+            color: var(--color-text-light);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .areas-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        
+        .area-badge {
+            padding: 0.75rem 1.5rem;
+            background-color: rgba(196, 145, 91, 0.2);
+            border: 1px solid var(--color-accent-primary);
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--color-accent-light);
+        }
+        
+        /* ========================================
+           SERVICES PAGE
+           ======================================== */
+        .service-category {
+            margin-bottom: var(--space-3xl);
+        }
+        
+        .service-category-header {
+            background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-hover));
+            color: white;
+            padding: var(--space-lg) var(--space-xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .service-category h3 {
+            color: white;
+            margin-bottom: 0;
+        }
+        
+        .service-list {
+            display: grid;
+            gap: var(--space-md);
+        }
+        
+        .service-item {
+            background-color: white;
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--color-accent-primary);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .service-item h4 {
+            color: var(--color-text-primary);
+        }
+        
+        /* ========================================
+           ABOUT PAGE
+           ======================================== */
+        .about-hero {
+            background: linear-gradient(135deg, var(--color-bg-secondary) 0%, white 100%);
+            padding: var(--space-3xl) 0;
+            text-align: center;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-xl) var(--space-md);
+        }
+        
+        .about-content p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .about-values {
+            display: grid;
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        .value-card {
+            background-color: white;
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+        
+        .value-card h3 {
+            color: var(--color-accent-primary);
+            margin-bottom: var(--space-md);
+        }
+        
+        /* ========================================
+           CONTACT PAGE
+           ======================================== */
+        .contact-grid {
+            display: grid;
+            gap: var(--space-xl);
+            margin-top: var(--space-xl);
+        }
+        
+        .contact-info {
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-light);
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+        }
+        
+        .contact-info h3 {
+            color: var(--color-text-light);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact-method {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact-method h4 {
+            color: var(--color-accent-light);
+            font-size: 1rem;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .contact-method a {
+            color: var(--color-text-light);
+            font-size: 1.125rem;
+            display: inline-block;
+            transition: color var(--transition-fast);
+        }
+        
+        .contact-method a:hover {
+            color: var(--color-accent-primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        
+        .social-link {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(196, 145, 91, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-base);
+        }
+        
+        .social-link:hover {
+            background-color: var(--color-accent-primary);
+            transform: translateY(-4px);
+        }
+        
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .site-footer {
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-light);
+            padding: var(--space-2xl) 0 var(--space-xl);
+            margin-bottom: var(--mobile-cta-height);
+        }
+        
+        .footer-content {
+            display: grid;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .footer-section h4 {
+            color: var(--color-accent-light);
+            margin-bottom: var(--space-md);
+            font-size: 1.125rem;
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9375rem;
+        }
+        
+        .footer-section a:hover {
+            color: var(--color-accent-primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--space-lg);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+        }
+        
+        /* ========================================
+           LIGHTBOX
+           ======================================== */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-base);
+        }
+        
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: var(--radius-lg);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform var(--transition-fast);
+        }
+        
+        .lightbox-close:hover {
+            transform: scale(1.2);
+        }
+        
+        /* ========================================
+           DESKTOP STYLES (min-width: 768px)
+           ======================================== */
+        @media (min-width: 768px) {
+            .mobile-menu-toggle {
+                display: none;
+            }
+            
+            .mobile-cta-bar {
+                display: none;
+            }
+            
+            .site-footer {
+                margin-bottom: 0;
+            }
+            
+            .main-nav {
+                display: block;
+                position: static;
+                background: none;
+                padding: 0;
+            }
+            
+            .nav-list {
+                flex-direction: row;
+                gap: var(--space-sm);
+            }
+            
+            .nav-link {
+                padding: var(--space-xs) var(--space-md);
+                font-size: 1rem;
+            }
+            
+            .service-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero-cta-group {
+                flex-direction: row;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .service-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        /* ========================================
+           PAGE ANIMATIONS
+           ======================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .animate-delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .animate-delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .animate-delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .animate-delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .animate-delay-5 { animation-delay: 0.5s; opacity: 0; }
+        
+        /* ========================================
+           FILTER BUTTONS
+           ======================================== */
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            justify-content: center;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background-color: white;
+            color: var(--color-text-primary);
+            border: 2px solid var(--color-border);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--color-accent-primary);
+            color: white;
+            border-color: var(--color-accent-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- ========================================
+         HEADER & NAVIGATION
+         ======================================== -->
+    <header class="site-header" id="siteHeader">
+        <div class="container header-container">
+            <a href="#home" class="site-logo">
+                Tupul <span>Homes</span>
+            </a>
+            
+            <nav class="main-nav" id="mainNav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
+                    <li><a href="#services" class="nav-link" data-page="services">Services</a></li>
+                    <li><a href="#gallery" class="nav-link" data-page="gallery">Gallery</a></li>
+                    <li><a href="#about" class="nav-link" data-page="about">About</a></li>
+                    <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
+                    <li><a href="#book" class="nav-link" data-page="book">Book Appointment</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- ========================================
+         MOBILE CTA BAR
+         ======================================== -->
+    <div class="mobile-cta-bar">
+        <a href="tel:6316718825" class="btn btn-primary">📞 Call Now</a>
+        <a href="#estimate" class="btn btn-secondary" onclick="showPage('home'); scrollToEstimate();">Free Estimate</a>
+    </div>
+    
+    <!-- ========================================
+         PAGE: HOME
+         ======================================== -->
+    <div id="page-home" class="page-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <h1 class="animate-in">Free Estimates for Home Improvements Across Long Island & NYC</h1>
+                <p class="hero-subtitle animate-in animate-delay-1">Decks, siding, renovations, brickwork, lighting, and more.</p>
+                <div class="hero-cta-group animate-in animate-delay-2">
+                    <a href="tel:6316718825" class="btn btn-primary btn-large">📞 Call Now</a>
+                    <a href="#estimate" class="btn btn-secondary btn-large" onclick="scrollToEstimate();">Get a Free Estimate</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Services Overview -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center">Our Services</h2>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🏗️</div>
+                        <h3>Exterior Work</h3>
+                        <p>Siding, decks, brickwork, pavers, and outdoor lighting installations.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🏠</div>
+                        <h3>Interior Renovations</h3>
+                        <p>Kitchen and bathroom renovations, wainscoting, and finish carpentry.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🔨</div>
+                        <h3>Remodeling</h3>
+                        <p>Complete garage and basement remodeling projects.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🛠️</div>
+                        <h3>Handyman Services</h3>
+                        <p>General repairs, installations, and home maintenance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Why Tupul Homes -->
+        <section class="section section-bg-alt">
+            <div class="container">
+                <h2 class="text-center">Why Tupul Homes</h2>
+                <ul class="why-list">
+                    <li class="why-item">
+                        <span class="why-item-icon">✓</span>
+                        <span class="why-item-text">20 years of hands-on experience in residential construction</span>
+                    </li>
+                    <li class="why-item">
+                        <span class="why-item-icon">✓</span>
+                        <span class="why-item-text">One crew for multiple home upgrades — no need to hire multiple contractors</span>
+                    </li>
+                    <li class="why-item">
+                        <span class="why-item-icon">✓</span>
+                        <span class="why-item-text">Clear communication and reliable scheduling you can count on</span>
+                    </li>
+                    <li class="why-item">
+                        <span class="why-item-icon">✓</span>
+                        <span class="why-item-text">Quality craftsmanship with clean, organized job sites</span>
+                    </li>
+                    <li class="why-item">
+                        <span class="why-item-icon">✓</span>
+                        <span class="why-item-text">Free estimates with no obligation</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Featured Projects -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center">Featured Projects</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Deck Installation<br>Long Island</div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Siding Renovation<br>Queens</div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Kitchen Remodel<br>Nassau County</div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Brickwork<br>Brooklyn</div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Bathroom Renovation<br>Suffolk County</div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Garage Remodel<br>Long Island</div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="#gallery" class="btn btn-secondary" onclick="showPage('gallery');">View Full Gallery</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Estimate Request Form -->
+        <section class="section section-bg-alt" id="estimate">
+            <div class="container-narrow">
+                <h2 class="text-center">Get Your Free Estimate</h2>
+                <p class="text-center text-large" style="margin-bottom: 3rem;">Tell us about your project and we'll get back to you within 24 hours.</p>
+                
+                <form class="estimate-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Name *</label>
+                        <input type="text" id="name" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Phone *</label>
+                        <input type="tel" id="phone" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email *</label>
+                        <input type="email" id="email" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="zip">Zip Code *</label>
+                        <input type="text" id="zip" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="serviceType">Service Type *</label>
+                        <select id="serviceType" class="form-select" required>
+                            <option value="">Select a service...</option>
+                            <option value="siding">Siding</option>
+                            <option value="deck">Deck Installation/Repair</option>
+                            <option value="brickwork">Brickwork</option>
+                            <option value="pavers">Pavers/Walkways/Driveways</option>
+                            <option value="lighting">Outdoor Lighting</option>
+                            <option value="kitchen">Kitchen Renovation</option>
+                            <option value="bathroom">Bathroom Renovation</option>
+                            <option value="wainscoting">Wainscoting/Finish Carpentry</option>
+                            <option value="handyman">General Handyman</option>
+                            <option value="garage">Garage Remodeling</option>
+                            <option value="basement">Basement Remodeling</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="description">Project Description *</label>
+                        <textarea id="description" class="form-textarea" required placeholder="Tell us about your project..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="photos">Upload Photos (Optional)</label>
+                        <input type="file" id="photos" class="form-file" multiple accept="image/*">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large btn-full">Submit Request</button>
+                </form>
+            </div>
+        </section>
+        
+        <!-- Service Areas -->
+        <section class="service-areas">
+            <div class="container">
+                <h2>We Serve Long Island & NYC</h2>
+                <p class="text-large" style="color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem;">Proudly serving homeowners, landlords, and developers across the region.</p>
+                <div class="areas-list">
+                    <span class="area-badge">Nassau County</span>
+                    <span class="area-badge">Suffolk County</span>
+                    <span class="area-badge">Queens</span>
+                    <span class="area-badge">Brooklyn</span>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- ========================================
+         PAGE: SERVICES
+         ======================================== -->
+    <div id="page-services" class="page-content hidden">
+        <section class="section" style="margin-top: 80px;">
+            <div class="container">
+                <h1 class="text-center">Our Services</h1>
+                <p class="text-center text-large" style="max-width: 700px; margin: 0 auto 4rem;">From small installs to full renovations — one trusted crew for all your home improvement needs.</p>
+                
+                <!-- EXTERIOR SERVICES -->
+                <div class="service-category">
+                    <div class="service-category-header">
+                        <h3>🏗️ Exterior Work</h3>
+                    </div>
+                    
+                    <div class="service-list">
+                        <div class="service-item">
+                            <h4>Siding Installation & Repair</h4>
+                            <p>Transform your home's exterior with quality siding. We install vinyl, fiber cement, and composite siding that protects your home and enhances curb appeal.</p>
+                        </div>
+                        
+                        <div class="service-item">
+                            <h4>Deck Construction & Refinishing</h4>
+                            <p>Custom deck builds and repairs using premium materials. We create outdoor living spaces perfect for entertaining and relaxation.</p>
+                        </div>
+                        
+                        <div class="service-item">
+                            <h4>Brickwork & Masonry</h4>
+                            <p>Expert brick and stone work for patios, retaining walls, chimneys, and facades. Durable craftsmanship that stands the test of time.</p>
+                        </div>
+                        
+                        <div class="service-item">
+                            <h4>Pavers, Walkways & Driveways</h4>
+                            <p>Beautiful hardscaping solutions including paver patios, walkways, and driveway installations that boost your home's value.</p>
+                        </div>
+                        
+                        <div class="service-item">
+                            <h4>Outdoor Lighting Installations</h4>
+                            <p>Enhance security and ambiance with professional landscape and architectural lighting installations.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="#estimate" class="btn btn-primary" onclick="showPage('home'); scrollToEstimate();">Get a Free Estimate</a>
+                    </div>
+                </div>
+                
+                <!-- INTERIOR SERVICES -->
+                <div class="service-category">
+                    <div class="service-category-header">
+                        <h3>🏠 Interior Renovations</h3>
+                    </div>
+                    
+                    <div class="service-list">
+                        <div class="service-item">
+                            <h4>Kitchen Renovations</h4>
+                            <p>Complete kitchen remodels including cabinets, countertops, flooring, and fixtures. We transform dated kitchens into modern, functional spaces.</p>
+                        </div>
+                        
+                        <div class="service-item">
+                            <h4>Bathroom Renovations & New Builds</h4>
+                            <p>Full bathroom renovations and new bathroom construction. From simple updates to complete gut jobs, we handle every detail.</p>
+                        </div>
+                        
+                        <div class="service-item">
+                            <h4>Wainscoting & Finish Carpentry</h4>
+                            <p>Elegant trim work, wainscoting, crown molding, and custom built-ins that add character and value to your home.</p>
+                        </div>
+                        
+                        <div class="service-item">
+                            <h4>General Handyman Work</h4>
+                            <p>Small repairs, installations, and maintenance tasks. From fixing doors to mounting TVs, we handle it all.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="#estimate" class="btn btn-primary" onclick="showPage('home'); scrollToEstimate();">Get a Free Estimate</a>
+                    </div>
+                </div>
+                
+                <!-- REMODELING SERVICES -->
+                <div class="service-category">
+                    <div class="service-category-header">
+                        <h3>🔨 Remodeling</h3>
+                    </div>
+                    
+                    <div class="service-list">
+                        <div class="service-item">
+                            <h4>Garage Remodeling</h4>
+                            <p>Convert your garage into functional living space or upgrade it for better storage and workshop capabilities.</p>
+                        </div>
+                        
+                        <div class="service-item">
+                            <h4>Basement Remodeling</h4>
+                            <p>Finish or refinish your basement to add valuable living space. Perfect for home offices, entertainment areas, or additional bedrooms.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="#estimate" class="btn btn-primary" onclick="showPage('home'); scrollToEstimate();">Get a Free Estimate</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- ========================================
+         PAGE: GALLERY
+         ======================================== -->
+    <div id="page-gallery" class="page-content hidden">
+        <section class="section" style="margin-top: 80px;">
+            <div class="container">
+                <h1 class="text-center">Project Gallery</h1>
+                <p class="text-center text-large" style="margin-bottom: 3rem;">Browse our recent work across Long Island and NYC.</p>
+                
+                <!-- Filter Buttons -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterGallery('all')">All Projects</button>
+                    <button class="filter-btn" onclick="filterGallery('exterior')">Exterior</button>
+                    <button class="filter-btn" onclick="filterGallery('interior')">Interior</button>
+                    <button class="filter-btn" onclick="filterGallery('remodeling')">Remodeling</button>
+                </div>
+                
+                <!-- Gallery Grid -->
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Exterior Projects -->
+                    <div class="gallery-item" data-category="exterior" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Composite Deck<br>Nassau County</div>
+                    </div>
+                    <div class="gallery-item" data-category="exterior" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Vinyl Siding<br>Queens</div>
+                    </div>
+                    <div class="gallery-item" data-category="exterior" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Brick Patio<br>Brooklyn</div>
+                    </div>
+                    <div class="gallery-item" data-category="exterior" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Paver Driveway<br>Suffolk County</div>
+                    </div>
+                    <div class="gallery-item" data-category="exterior" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Landscape Lighting<br>Long Island</div>
+                    </div>
+                    <div class="gallery-item" data-category="exterior" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Stone Walkway<br>Nassau County</div>
+                    </div>
+                    
+                    <!-- Interior Projects -->
+                    <div class="gallery-item" data-category="interior" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Modern Kitchen<br>Queens</div>
+                    </div>
+                    <div class="gallery-item" data-category="interior" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Master Bathroom<br>Brooklyn</div>
+                    </div>
+                    <div class="gallery-item" data-category="interior" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Wainscoting<br>Suffolk County</div>
+                    </div>
+                    <div class="gallery-item" data-category="interior" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Kitchen Island<br>Nassau County</div>
+                    </div>
+                    <div class="gallery-item" data-category="interior" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Guest Bathroom<br>Long Island</div>
+                    </div>
+                    <div class="gallery-item" data-category="interior" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Crown Molding<br>Queens</div>
+                    </div>
+                    
+                    <!-- Remodeling Projects -->
+                    <div class="gallery-item" data-category="remodeling" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Garage Conversion<br>Brooklyn</div>
+                    </div>
+                    <div class="gallery-item" data-category="remodeling" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Basement Recreation Room<br>Suffolk County</div>
+                    </div>
+                    <div class="gallery-item" data-category="remodeling" onclick="openLightbox(this)">
+                        <div class="gallery-placeholder">Home Office Remodel<br>Nassau County</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- ========================================
+         PAGE: ABOUT
+         ======================================== -->
+    <div id="page-about" class="page-content hidden">
+        <div class="about-hero" style="margin-top: 80px;">
+            <div class="container">
+                <h1>About Tupul Homes</h1>
+                <p class="hero-subtitle" style="color: var(--color-text-secondary);">20 years serving homeowners across Long Island & NYC</p>
+            </div>
+        </div>
+        
+        <section class="section">
+            <div class="about-content">
+                <p>For two decades, Tupul Homes has been the trusted choice for homeowners, landlords, and small developers throughout Nassau County, Suffolk County, Queens, and Brooklyn. What started as a small handyman service has grown into a full-service home improvement company, but we've never lost our family-style, hands-on approach.</p>
+                
+                <p>We believe in doing things right the first time. Our experienced crew handles everything from small repairs to complete renovations, which means you won't need to coordinate multiple contractors or worry about miscommunication between trades. When you work with Tupul Homes, you get one reliable team from start to finish.</p>
+                
+                <p>Quality craftsmanship, clear communication, and reliable scheduling aren't just promises — they're how we've built our reputation over the past 20 years. We keep our job sites clean and organized, we show up when we say we will, and we treat your home with the same respect we'd give our own.</p>
+                
+                <p>Whether you're looking to upgrade your deck, renovate your kitchen, add new siding, or tackle a complete home remodel, Tupul Homes brings the experience, versatility, and dedication you deserve. We're not the biggest contractor in New York, but that's exactly what allows us to give every project the attention and care it deserves.</p>
+            </div>
+        </section>
+        
+        <section class="section section-bg-alt">
+            <div class="container">
+                <h2 class="text-center">What Sets Us Apart</h2>
+                <div class="about-values">
+                    <div class="value-card">
+                        <h3>Experience You Can Trust</h3>
+                        <p>20 years of hands-on experience means we've seen it all. We know how to handle unexpected challenges and deliver quality results on every project.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <h3>All-in-One Service</h3>
+                        <p>From exterior work to interior renovations to full remodels, our versatile crew handles it all. No need to hire multiple contractors.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <h3>Clear Communication</h3>
+                        <p>We keep you informed every step of the way. You'll always know what's happening, what's next, and when to expect completion.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <h3>Reliable & Professional</h3>
+                        <p>We show up on time, keep our job sites clean, and complete projects on schedule. Your satisfaction is our priority.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- ========================================
+         PAGE: CONTACT
+         ======================================== -->
+    <div id="page-contact" class="page-content hidden">
+        <section class="section" style="margin-top: 80px;">
+            <div class="container">
+                <h1 class="text-center">Get in Touch</h1>
+                <p class="text-center text-large" style="margin-bottom: 3rem;">Ready to start your project? Contact us today for a free estimate.</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        
+                        <div class="contact-method">
+                            <h4>Phone</h4>
+                            <a href="tel:6316718825">631-671-8825</a>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <h4>Email</h4>
+                            <a href="mailto:antoniomejia869@gmail.com">antoniomejia869@gmail.com</a>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <h4>Service Areas</h4>
+                            <p style="color: rgba(255, 255, 255, 0.9);">Nassau County, Suffolk County, Queens, Brooklyn</p>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <h4>Follow Us</h4>
+                            <div class="social-links">
+                                <a href="https://instagram.com/tupulhomes" target="_blank" class="social-link" aria-label="Instagram">
+                                    📷
+                                </a>
+                                <a href="https://tiktok.com/@tupulhomes" target="_blank" class="social-link" aria-label="TikTok">
+                                    🎵
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="estimate-form" onsubmit="handleFormSubmit(event)">
+                        <h3 style="margin-bottom: 1.5rem;">Send Us a Message</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="contactName">Name *</label>
+                            <input type="text" id="contactName" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="contactPhone">Phone *</label>
+                            <input type="tel" id="contactPhone" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="contactEmail">Email *</label>
+                            <input type="email" id="contactEmail" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="contactMessage">Message *</label>
+                            <textarea id="contactMessage" class="form-textarea" required placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-large btn-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- ========================================
+         PAGE: BOOK APPOINTMENT
+         ======================================== -->
+    <div id="page-book" class="page-content hidden">
+        <section class="section" style="margin-top: 80px;">
+            <div class="container-narrow">
+                <h1 class="text-center">Book an Appointment</h1>
+                <p class="text-center text-large" style="margin-bottom: 3rem;">Schedule a consultation or site visit for your project.</p>
+                
+                <form class="estimate-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="bookName">Name *</label>
+                        <input type="text" id="bookName" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="bookPhone">Phone *</label>
+                        <input type="tel" id="bookPhone" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="bookEmail">Email *</label>
+                        <input type="email" id="bookEmail" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="bookAddress">Address / Zip Code *</label>
+                        <input type="text" id="bookAddress" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="bookServiceType">Service Type *</label>
+                        <select id="bookServiceType" class="form-select" required>
+                            <option value="">Select a service...</option>
+                            <option value="siding">Siding</option>
+                            <option value="deck">Deck Installation/Repair</option>
+                            <option value="brickwork">Brickwork</option>
+                            <option value="pavers">Pavers/Walkways/Driveways</option>
+                            <option value="lighting">Outdoor Lighting</option>
+                            <option value="kitchen">Kitchen Renovation</option>
+                            <option value="bathroom">Bathroom Renovation</option>
+                            <option value="wainscoting">Wainscoting/Finish Carpentry</option>
+                            <option value="handyman">General Handyman</option>
+                            <option value="garage">Garage Remodeling</option>
+                            <option value="basement">Basement Remodeling</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="bookDate">Preferred Date *</label>
+                        <input type="date" id="bookDate" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="bookTime">Preferred Time Window *</label>
+                        <select id="bookTime" class="form-select" required>
+                            <option value="">Select a time...</option>
+                            <option value="morning">Morning (8 AM - 12 PM)</option>
+                            <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+                            <option value="evening">Evening (4 PM - 7 PM)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="bookDescription">Project Description *</label>
+                        <textarea id="bookDescription" class="form-textarea" required placeholder="Tell us about your project..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="bookPhotos">Upload Photos (Optional)</label>
+                        <input type="file" id="bookPhotos" class="form-file" multiple accept="image/*">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large btn-full">Request Appointment</button>
+                </form>
+            </div>
+        </section>
+    </div>
+    
+    <!-- ========================================
+         LIGHTBOX
+         ======================================== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <img src="" alt="" class="lightbox-image" id="lightboxImage">
+        </div>
+    </div>
+    
+    <!-- ========================================
+         FOOTER
+         ======================================== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Tupul Homes</h4>
+                    <p>From small installs to full renovations — one trusted crew.</p>
+                    <p style="margin-top: 1rem;">20 years of experience serving Long Island & NYC</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><a href="tel:6316718825">631-671-8825</a></p>
+                    <p><a href="mailto:antoniomejia869@gmail.com">antoniomejia869@gmail.com</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Service Areas</h4>
+                    <p>Nassau County<br>
+                    Suffolk County<br>
+                    Queens<br>
+                    Brooklyn</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <p><a href="https://instagram.com/tupulhomes" target="_blank">Instagram: @tupulhomes</a></p>
+                    <p><a href="https://tiktok.com/@tupulhomes" target="_blank">TikTok: @tupulhomes</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Tupul Homes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- ========================================
+         JAVASCRIPT
+         ======================================== -->
+    <script>
+        // ========================================
+        // PAGE NAVIGATION
+        // ========================================
+        function showPage(pageName) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.add('hidden'));
+            
+            // Show selected page
+            const targetPage = document.getElementById(`page-${pageName}`);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                window.scrollTo(0, 0);
+            }
+            
+            // Update active nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if (link.dataset.page === pageName) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // Close mobile menu
+            closeMobileMenu();
+        }
+        
+        // Handle hash navigation
+        function handleHashNavigation() {
+            const hash = window.location.hash.substring(1);
+            if (hash && hash !== 'estimate') {
+                showPage(hash);
+            } else if (!hash) {
+                showPage('home');
+            }
+        }
+        
+        // Initialize navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageName = this.dataset.page;
+                    window.location.hash = pageName;
+                    showPage(pageName);
+                });
+            });
+            
+            // Handle initial page load
+            handleHashNavigation();
+        });
+        
+        window.addEventListener('hashchange', handleHashNavigation);
+        
+        // ========================================
+        // MOBILE MENU
+        // ========================================
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mainNav.classList.toggle('active');
+            document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        function closeMobileMenu() {
+            mobileMenuToggle.classList.remove('active');
+            mainNav.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // ========================================
+        // HEADER SCROLL EFFECT
+        // ========================================
+        const header = document.getElementById('siteHeader');
+        let lastScrollTop = 0;
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+        
+        // ========================================
+        // FORM HANDLING
+        // ========================================
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // In production, this would submit to a backend
+            alert('Thank you for your request! We will contact you within 24 hours.');
+            event.target.reset();
+            
+            return false;
+        }
+        
+        // ========================================
+        // SCROLL TO ESTIMATE
+        // ========================================
+        function scrollToEstimate() {
+            const estimateSection = document.getElementById('estimate');
+            if (estimateSection) {
+                estimateSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // ========================================
+        // GALLERY FILTERING
+        // ========================================
+        function filterGallery(category) {
+            const items = document.querySelectorAll('#galleryGrid .gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter items
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        // ========================================
+        // LIGHTBOX
+        // ========================================
+        function openLightbox(element) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            
+            // For placeholder images, we'll just show the text
+            // In production, this would load the actual image
+            const placeholderText = element.querySelector('.gallery-placeholder');
+            if (placeholderText) {
+                // Create a canvas with the placeholder text for demonstration
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = 800;
+                canvas.height = 600;
+                
+                // Draw gradient background
+                const gradient = ctx.createLinearGradient(0, 0, 800, 600);
+                gradient.addColorStop(0, '#E8D5C0');
+                gradient.addColorStop(1, '#C4915B');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 800, 600);
+                
+                // Draw text
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 32px "Crimson Pro", serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                const lines = placeholderText.innerHTML.split('<br>');
+                lines.forEach((line, index) => {
+                    ctx.fillText(line, 400, 280 + (index * 40));
+                });
+                
+                lightboxImage.src = canvas.toDataURL();
+            }
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+        
+        // ========================================
+        // ANIMATION ON SCROLL
+        // ========================================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.service-card, .why-item, .gallery-item, .value-card');
+            animateElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
