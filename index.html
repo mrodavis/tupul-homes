@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tupul Homes - Home Improvements Across Long Island & NYC</title>
-    <meta name="description" content="From small installs to full renovations — one trusted crew. 20 years serving Nassau, Suffolk, Queens & Brooklyn.">
+    <meta name="description" content="From small installs to full renovations — one trusted crew. 20+ years serving Nassau, Suffolk, Queens & Brooklyn.">
     
     <style>
         /* ========================================
@@ -414,15 +414,37 @@
         .hero {
             margin-top: var(--header-height);
             position: relative;
-            min-height: 600px;
+            min-height: 75vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, rgba(43, 43, 43, 0.85) 0%, rgba(43, 43, 43, 0.7) 100%),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%234A4A4A" width="1200" height="800"/><g fill-opacity="0.3"><polygon fill="%23C4915B" points="1200 0 0 0 0 800"/><polygon fill="%23A67848" points="1200 800 1200 0 0 800"/></g></svg>');
-            background-size: cover;
-            background-position: center;
             overflow: hidden;
         }
+
+        /* Background image */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('./assets/images/hero-home.png');
+            background-size: cover;
+            background-position: 65% center;
+            transform: scale(1.03);
+            z-index: 0;
+        }
+
+        /* Overlay for contrast */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(43,43,43,0.88) 0%,
+                rgba(43,43,43,0.72) 45%,
+                rgba(43,43,43,0.4) 70%,
+                rgba(43,43,43,0.15) 100%
+            );
+            z-index: 1;
+        }
+
         
         .hero::after {
             content: '';
@@ -439,6 +461,11 @@
             position: relative;
             z-index: 1;
             padding: var(--space-3xl) 0;
+        }
+
+        .hero-line-accent {
+            display: block;
+            margin-top: 0.25em;
         }
         
         .hero h1 {
@@ -1086,15 +1113,27 @@
     <div id="page-home" class="page-content">
         <!-- Hero Section -->
         <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-overlay"></div>
+
             <div class="container hero-content">
-                <h1 class="animate-in">Free Estimates for Home Improvements Across Long Island & NYC</h1>
-                <p class="hero-subtitle animate-in animate-delay-1">Decks, siding, renovations, brickwork, lighting, and more.</p>
-                <div class="hero-cta-group animate-in animate-delay-2">
-                    <a href="tel:6316718825" class="btn btn-primary btn-large">📞 Call Now</a>
-                    <a href="#estimate" class="btn btn-secondary btn-large" onclick="scrollToEstimate();">Get a Free Estimate</a>
+                <div class="hero-copy">
+                    <h1>
+                    Free Estimates for Home Improvements<br>
+                    <span class="hero-line-accent">Across Long Island & NYC</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Decks, siding, renovations, <br>brickwork, lighting, and more.
+                    </p>
+
+                    <div class="hero-cta-group">
+                        <a href="tel:6316718825" class="btn btn-primary btn-large">📞 Call Now</a>
+                        <a href="#estimate" class="btn btn-secondary btn-large">Get a Free Estimate</a>
+                    </div>
                 </div>
             </div>
         </section>
+
         
         <!-- Services Overview -->
         <section class="section">
@@ -1135,7 +1174,7 @@
                 <ul class="why-list">
                     <li class="why-item">
                         <span class="why-item-icon">✓</span>
-                        <span class="why-item-text">20 years of hands-on experience in residential construction</span>
+                        <span class="why-item-text">20+ years of hands-on experience in residential construction</span>
                     </li>
                     <li class="why-item">
                         <span class="why-item-icon">✓</span>
@@ -1450,7 +1489,7 @@
         <div class="about-hero" style="margin-top: 80px;">
             <div class="container">
                 <h1>About Tupul Homes</h1>
-                <p class="hero-subtitle" style="color: var(--color-text-secondary);">20 years serving homeowners across Long Island & NYC</p>
+                <p class="hero-subtitle" style="color: var(--color-text-secondary);">20+ years serving homeowners across Long Island & NYC</p>
             </div>
         </div>
         
@@ -1460,7 +1499,7 @@
                 
                 <p>We believe in doing things right the first time. Our experienced crew handles everything from small repairs to complete renovations, which means you won't need to coordinate multiple contractors or worry about miscommunication between trades. When you work with Tupul Homes, you get one reliable team from start to finish.</p>
                 
-                <p>Quality craftsmanship, clear communication, and reliable scheduling aren't just promises — they're how we've built our reputation over the past 20 years. We keep our job sites clean and organized, we show up when we say we will, and we treat your home with the same respect we'd give our own.</p>
+                <p>Quality craftsmanship, clear communication, and reliable scheduling aren't just promises — they're how we've built our reputation over the past 20+ years. We keep our job sites clean and organized, we show up when we say we will, and we treat your home with the same respect we'd give our own.</p>
                 
                 <p>Whether you're looking to upgrade your deck, renovate your kitchen, add new siding, or tackle a complete home remodel, Tupul Homes brings the experience, versatility, and dedication you deserve. We're not the biggest contractor in New York, but that's exactly what allows us to give every project the attention and care it deserves.</p>
             </div>
@@ -1472,7 +1511,7 @@
                 <div class="about-values">
                     <div class="value-card">
                         <h3>Experience You Can Trust</h3>
-                        <p>20 years of hands-on experience means we've seen it all. We know how to handle unexpected challenges and deliver quality results on every project.</p>
+                        <p>20+ years of hands-on experience means we've seen it all. We know how to handle unexpected challenges and deliver quality results on every project.</p>
                     </div>
                     
                     <div class="value-card">
@@ -1664,7 +1703,7 @@
                 <div class="footer-section">
                     <h4>Tupul Homes</h4>
                     <p>From small installs to full renovations — one trusted crew.</p>
-                    <p style="margin-top: 1rem;">20 years of experience serving Long Island & NYC</p>
+                    <p style="margin-top: 1rem;">20+ years of experience serving Long Island & NYC</p>
                 </div>
                 
                 <div class="footer-section">
