@@ -625,6 +625,35 @@
             text-align: center;
             padding: var(--space-md);
         }
+
+        .gallery-item {
+            position: relative;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                rgba(0,0,0,0.0),
+                rgba(0,0,0,0.55)
+        );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .gallery-text {
+            color: white;
+            text-align: center;
+            font-family: var(--font-display);
+            font-size: 1.125rem;
+            font-weight: 600;
+            line-height: 1.4;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            padding: 1rem;
+        }
+
         
         /* ========================================
            FORMS
@@ -1223,8 +1252,18 @@
             <div class="container">
                 <h2 class="text-center">Featured Projects</h2>
                 <div class="gallery-grid">
-                    <div class="gallery-item" onclick="openLightbox(this)">
-                        <div class="gallery-placeholder">Deck Installation<br>Long Island</div>
+                    <div class="gallery-item" onclick="openLightbox(this)" data-image="./assets/images/deck-installation.png">
+                        <img 
+                            src="./assets/images/deck-installation.png"
+                            alt="Deck installation project in Long Island"
+                        />
+
+                        <div class="gallery-overlay">
+                            <div class="gallery-text">
+                            Deck Installation<br>
+                            Long Island
+                            </div>
+                        </div>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(this)">
                         <div class="gallery-placeholder">Siding Renovation<br>Queens</div>
@@ -1903,53 +1942,58 @@
         function openLightbox(element) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightboxImage');
-            
-            // For placeholder images, we'll just show the text
-            // In production, this would load the actual image
-            const placeholderText = element.querySelector('.gallery-placeholder');
-            if (placeholderText) {
-                // Create a canvas with the placeholder text for demonstration
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                canvas.width = 800;
-                canvas.height = 600;
-                
-                // Draw gradient background
-                const gradient = ctx.createLinearGradient(0, 0, 800, 600);
-                gradient.addColorStop(0, '#E8D5C0');
-                gradient.addColorStop(1, '#C4915B');
-                ctx.fillStyle = gradient;
-                ctx.fillRect(0, 0, 800, 600);
-                
-                // Draw text
-                ctx.fillStyle = 'white';
-                ctx.font = 'bold 32px "Crimson Pro", serif';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                const lines = placeholderText.innerHTML.split('<br>');
-                lines.forEach((line, index) => {
-                    ctx.fillText(line, 400, 280 + (index * 40));
-                });
-                
-                lightboxImage.src = canvas.toDataURL();
+
+            // 1. Try real image first (preferred)
+            const img = element.querySelector('img');
+
+            if (img && img.src) {
+                lightboxImage.src = img.src;
+                lightboxImage.alt = img.alt || '';
+            } 
+            // 2. Fallback: placeholder canvas (your existing logic)
+            else {
+                const placeholderText = element.querySelector('.gallery-placeholder');
+                if (placeholderText) {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = 800;
+                    canvas.height = 600;
+
+                    const gradient = ctx.createLinearGradient(0, 0, 800, 600);
+                    gradient.addColorStop(0, '#E8D5C0');
+                    gradient.addColorStop(1, '#C4915B');
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, 800, 600);
+
+                    ctx.fillStyle = 'white';
+                    ctx.font = 'bold 32px "Crimson Pro", serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+
+                    const lines = placeholderText.innerHTML.split('<br>');
+                    lines.forEach((line, index) => {
+                        ctx.fillText(line, 400, 280 + (index * 40));
+                    });
+
+                    lightboxImage.src = canvas.toDataURL();
+                    lightboxImage.alt = placeholderText.textContent;
+                }
             }
-            
+
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
+
         
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+
             lightbox.classList.remove('active');
+            lightboxImage.src = '';
             document.body.style.overflow = '';
         }
-        
-        // Close lightbox on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
-        });
+
         
         // ========================================
         // ANIMATION ON SCROLL
