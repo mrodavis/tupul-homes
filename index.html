@@ -792,7 +792,36 @@
         /* ========================================
            ABOUT PAGE
            ======================================== */
-        .about-hero {
+        /* ABOUT STORY SECTION */
+        .about-story {
+            display: grid;
+            gap: var(--space-3xl);
+        }
+
+        @media (min-width: 768px) {
+            .about-story {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+        }
+
+        .about-story-image img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+        }
+
+        .about-story-text h2 {
+            margin-bottom: var(--space-md);
+        }
+
+        .about-story-text p {
+            font-size: 1.125rem;
+            line-height: 1.75;
+            color: var(--color-text-primary);
+        }
+
+           .about-hero {
             background: linear-gradient(135deg, var(--color-bg-secondary) 0%, white 100%);
             padding: var(--space-3xl) 0;
             text-align: center;
@@ -1281,7 +1310,7 @@
                     <div class="gallery-item" onclick="openLightbox(this)" data-image="./assets/images/kitchen-remodeling.png">
                         <img 
                             src="./assets/images/kitchen-remodeling.png"
-                            alt="Siding renovation project in Queens"
+                            alt="Kitchen renovation project in Queens"
                         />
 
                         <div class="gallery-overlay">
@@ -1530,23 +1559,53 @@
                 
                 <!-- Filter Buttons -->
                 <div class="filter-buttons">
-                    <button class="filter-btn active" onclick="filterGallery('all')">All Projects</button>
-                    <button class="filter-btn" onclick="filterGallery('exterior')">Exterior</button>
-                    <button class="filter-btn" onclick="filterGallery('interior')">Interior</button>
-                    <button class="filter-btn" onclick="filterGallery('remodeling')">Remodeling</button>
+                    <button class="filter-btn active" onclick="filterGallery('all', event)">All Projects</button>
+                    <button class="filter-btn" onclick="filterGallery('exterior', event)">Exterior</button>
+                    <button class="filter-btn" onclick="filterGallery('interior', event)">Interior</button>
+                    <button class="filter-btn" onclick="filterGallery('remodeling', event)">Remodeling</button>
                 </div>
                 
                 <!-- Gallery Grid -->
                 <div class="gallery-grid" id="galleryGrid">
                     <!-- Exterior Projects -->
-                    <div class="gallery-item" data-category="exterior" onclick="openLightbox(this)">
-                        <div class="gallery-placeholder">Composite Deck<br>Nassau County</div>
+                    <div class="gallery-item" data-category="exterior" onclick="openLightbox(this)" data-image="./assets/images/deck-installation.png">
+                        <img 
+                            src="./assets/images/deck-installation.png"
+                            alt="Deck installation project in Long Island"
+                        />
+
+                        <div class="gallery-overlay">
+                            <div class="gallery-text">
+                            Deck Installation<br>
+                            Suffolk County
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item" data-category="exterior" onclick="openLightbox(this)">
-                        <div class="gallery-placeholder">Vinyl Siding<br>Queens</div>
+                    <div class="gallery-item" data-category="exterior" onclick="openLightbox(this)" data-image="./assets/images/siding-renovation.png">
+                        <img 
+                            src="./assets/images/siding-renovation.png"
+                            alt="Siding renovation project in Long Island"
+                        />
+
+                        <div class="gallery-overlay">
+                            <div class="gallery-text">
+                            Siding Renovation<br>
+                            Nassau County
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item" data-category="exterior" onclick="openLightbox(this)">
-                        <div class="gallery-placeholder">Brick Patio<br>Brooklyn</div>
+                    <div class="gallery-item" data-category="exterior" onclick="openLightbox(this)" data-image="./assets/images/brickwork.png">
+                        <img 
+                            src="./assets/images/brickwork.png"
+                            alt="Brickwork project in Brooklyn"
+                        />
+
+                        <div class="gallery-overlay">
+                            <div class="gallery-text">
+                            Brickwork<br>
+                            Brooklyn
+                            </div>
+                        </div>
                     </div>
                     <div class="gallery-item" data-category="exterior" onclick="openLightbox(this)">
                         <div class="gallery-placeholder">Paver Driveway<br>Suffolk County</div>
@@ -1604,6 +1663,34 @@
             </div>
         </div>
         
+        <!-- ========================================
+            ABOUT STORY SECTION
+            ======================================== -->
+        <section class="section">
+            <div class="container about-story">
+                <div class="about-story-image">
+                    <img 
+                        src="./assets/images/sheetrock-install.png"
+                        alt="Tupul Homes crew performing structural build-out work"
+                    />
+                </div>
+
+                <div class="about-story-text">
+                    <h2>Hands-On From Day One</h2>
+                    <p>
+                        Tupul Homes was built in the field, not behind a desk. Our crew is
+                        hands-on at every stage — from demolition to framing to final finishes.
+                    </p>
+                    <p>
+                        We don’t outsource responsibility or disappear once the contract is signed.
+                        When you hire Tupul Homes, the people you meet on day one are the same
+                        people doing the work.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
         <section class="section">
             <div class="about-content">
                 <p>For two decades, Tupul Homes has been the trusted choice for homeowners, landlords, and small developers throughout Nassau County, Suffolk County, Queens, and Brooklyn. What started as a small handyman service has grown into a full-service home improvement company, but we've never lost our family-style, hands-on approach.</p>
@@ -1968,7 +2055,7 @@
         // ========================================
         // GALLERY FILTERING
         // ========================================
-        function filterGallery(category) {
+        function filterGallery(category, event) {
             const items = document.querySelectorAll('#galleryGrid .gallery-item');
             const buttons = document.querySelectorAll('.filter-btn');
             
