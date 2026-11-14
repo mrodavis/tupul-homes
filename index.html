@@ -2049,13 +2049,98 @@
         // ========================================
         // FORM HANDLING
         // ========================================
-        function handleFormSubmit(event) {
+        const LEAD_ENDPOINT = 'https://tupul-homes.vercel.app/api/lead';
+        const FORM_FIELDS = {
+            estimate: { name: 'name', phone: 'phone', email: 'email', zip: 'zip', service: 'serviceType', message: 'description', photos: 'photos' },
+            contact: { name: 'contactName', phone: 'contactPhone', email: 'contactEmail', message: 'contactMessage' },
+            book: { name: 'bookName', phone: 'bookPhone', email: 'bookEmail', zip: 'bookAddress', service: 'bookServiceType', date: 'bookDate', time: 'bookTime', message: 'bookDescription', photos: 'bookPhotos' }
+        };
+
+        function formKind(form) {
+            if (form.querySelector('#bookName')) return 'book';
+            if (form.querySelector('#contactName')) return 'contact';
+            return 'estimate';
+        }
+
+        // Hidden spam trap + start time on every form
+        document.querySelectorAll('.estimate-form').forEach(form => {
+            const trap = document.createElement('input');
+            trap.type = 'text';
+            trap.name = 'company';
+            trap.tabIndex = -1;
+            trap.autocomplete = 'off';
+            trap.setAttribute('aria-hidden', 'true');
+            trap.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0';
+            form.appendChild(trap);
+            form.addEventListener('focusin', () => { if (!form.dataset.startedAt) form.dataset.startedAt = Date.now(); }, { once: true });
+        });
+
+        // Shrink photos in the browser so uploads stay small and fast
+        async function shrinkPhoto(file) {
+            try {
+                const bmp = await createImageBitmap(file);
+                const scale = Math.min(1, 1600 / Math.max(bmp.width, bmp.height));
+                const canvas = document.createElement('canvas');
+                canvas.width = Math.round(bmp.width * scale);
+                canvas.height = Math.round(bmp.height * scale);
+                canvas.getContext('2d').drawImage(bmp, 0, 0, canvas.width, canvas.height);
+                const blob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.82));
+                return blob ? new File([blob], file.name.replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg' }) : file;
+            } catch (e) {
+                return file;
+            }
+        }
+
+        function showFormMessage(form, ok, text) {
+            let box = form.querySelector('.form-status');
+            if (!box) {
+                box = document.createElement('div');
+                box.className = 'form-status';
+                box.setAttribute('role', 'status');
+                box.style.cssText = 'margin-top:1rem;padding:1rem 1.25rem;border-radius:8px;font-weight:500;';
+                form.appendChild(box);
+            }
+            box.style.background = ok ? '#EEF6EA' : '#FBECEA';
+            box.style.color = ok ? '#2F5D1F' : '#8A2A1E';
+            box.innerHTML = text;
+        }
+
+        async function handleFormSubmit(event) {
             event.preventDefault();
-            
-            // In production, this would submit to a backend
-            alert('Thank you for your request! We will contact you within 24 hours.');
-            event.target.reset();
-            
+            const form = event.target;
+            const kind = formKind(form);
+            const map = FORM_FIELDS[kind];
+            const button = form.querySelector('button[type="submit"]');
+            const label = button ? button.textContent : '';
+
+            const data = new FormData();
+            data.append('form', kind);
+            data.append('company', (form.querySelector('input[name="company"]') || {}).value || '');
+            data.append('startedAt', form.dataset.startedAt || '');
+            for (const [key, id] of Object.entries(map)) {
+                if (key === 'photos') continue;
+                const el = form.querySelector('#' + id);
+                if (el) data.append(key, el.value);
+            }
+            if (map.photos) {
+                const input = form.querySelector('#' + map.photos);
+                const files = input ? Array.from(input.files).slice(0, 6) : [];
+                for (const f of files) data.append('photos', await shrinkPhoto(f));
+            }
+
+            if (button) { button.disabled = true; button.textContent = 'Sending...'; }
+            try {
+                const res = await fetch(LEAD_ENDPOINT, { method: 'POST', body: data });
+                const out = await res.json().catch(() => ({}));
+                if (!res.ok || !out.ok) throw new Error(out.error || 'Request failed');
+                form.reset();
+                delete form.dataset.startedAt;
+                showFormMessage(form, true, 'Thank you! Your request was sent. We will contact you within 24 hours.');
+            } catch (err) {
+                showFormMessage(form, false, 'Sorry, your request did not go through. Please call us at <a href="tel:6316718825" style="color:inherit;text-decoration:underline">631-671-8825</a>.');
+            } finally {
+                if (button) { button.disabled = false; button.textContent = label; }
+            }
             return false;
         }
         
