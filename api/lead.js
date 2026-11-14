@@ -61,11 +61,17 @@ function json(body, status, origin) {
 const clean = (v, max = 2000) => String(v ?? "").replace(/\r/g, "").trim().slice(0, max);
 const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
-async function translateToSpanish(text) {
+async function translateToSpanish(text, request) {
   // Best effort through the Vercel AI Gateway. Falls back to null on any problem.
   if (!text) return null;
-  const token = process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN;
-  if (!token) return null;
+  const token =
+    process.env.AI_GATEWAY_API_KEY ||
+    request?.headers?.get("x-vercel-oidc-token") ||
+    process.env.VERCEL_OIDC_TOKEN;
+  if (!token) {
+    console.warn("translate: no gateway token available");
+    return null;
+  }
   try {
     const ctrl = new AbortController();
     const t = setTimeout(() => ctrl.abort(), 6000);
@@ -74,7 +80,7 @@ async function translateToSpanish(text) {
       signal: ctrl.signal,
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: process.env.TRANSLATE_MODEL || "openai/gpt-4o-mini",
+        model: process.env.TRANSLATE_MODEL || "anthropic/claude-haiku-4.5",
         temperature: 0,
         messages: [
           { role: "system", content: "Translate the customer's home-improvement request into simple, clear Spanish for a contractor. Return only the translation." },
@@ -83,10 +89,14 @@ async function translateToSpanish(text) {
       }),
     });
     clearTimeout(t);
-    if (!r.ok) return null;
+    if (!r.ok) {
+      console.warn("translate: gateway status", r.status);
+      return null;
+    }
     const data = await r.json();
     return clean(data?.choices?.[0]?.message?.content, 3000) || null;
-  } catch {
+  } catch (e) {
+    console.warn("translate: failed", e?.name || "error");
     return null;
   }
 }
@@ -152,7 +162,7 @@ export async function POST(request) {
   const svc = SERVICES[lead.service];
   const tm = TIMES[lead.time];
   const [formEn, formEs] = FORM_NAMES[kind];
-  const es = await translateToSpanish(lead.message);
+  const es = await translateToSpanish(lead.message, request);
 
   const rowsEn = [
     ["Name", lead.name],
