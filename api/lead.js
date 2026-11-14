@@ -90,7 +90,8 @@ async function translateToSpanish(text, request) {
     });
     clearTimeout(t);
     if (!r.ok) {
-      console.warn("translate: gateway status", r.status);
+      const why = (await r.text().catch(() => "")).slice(0, 300);
+      console.warn("translate: gateway status", r.status, why);
       return null;
     }
     const data = await r.json();
