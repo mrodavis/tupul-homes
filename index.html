@@ -247,6 +247,18 @@
             transform: translateY(-2px);
         }
         
+        /* Secondary button on the dark hero: light text so it stays readable */
+        .hero .btn-secondary {
+            color: var(--color-text-light);
+            background-color: rgba(255, 255, 255, 0.06);
+            border-color: var(--color-accent-primary);
+        }
+
+        .hero .btn-secondary:hover {
+            background-color: var(--color-accent-primary);
+            color: var(--color-text-light);
+        }
+
         .btn-large {
             padding: 1.25rem 2.5rem;
             font-size: 1.125rem;
