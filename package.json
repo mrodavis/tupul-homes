@@ -1,0 +1,6 @@
+{
+  "name": "tupul-homes",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" }
+}
